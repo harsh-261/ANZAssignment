@@ -1,0 +1,72 @@
+﻿= MoveRobotAssignment
+:toc:
+:icons: font
+:source-highlighter: coderay
+
+== Overview
+
+MoveRobotAssignment is a C# solution for simulating a robot moving on a tabletop grid. The robot can be placed, moved, rotated, and can report its position. The project uses MediatR for command/query handling, dependency injection, and xUnit/Moq for unit testing.
+
+== Features
+
+- Place the robot at a specific position and direction
+- Move the robot forward
+- Rotate the robot left or right
+- Report the robot's current position and direction
+- Command/query handlers for each action
+- In-memory state management
+
+== Requirements
+
+- .NET 8.0 or later
+- Visual Studio 2022 or later
+
+== Getting Started
+
+. Clone the repository:
++
+[source,sh]
+----
+git clone https://github.com/yourusername/MoveRobotAssignment.git
+----
+. Open the solution in Visual Studio.
+. Build the solution.
+. Run the application or unit tests using the Visual Studio Test Explorer.
+
+== Project Structure
+
+- MoveRobotAssignment/Feature - Command and query handlers (e.g., PlaceCommandHandler, MoveCommandHandler)
+- MoveRobotAssignment/StateMachine - Board and robot state logic
+- MoveRobotAssignment/Enums - Direction and other enums
+- MoveRobotAssignment/Models - Data models (e.g., Position)
+- MoveRobotAssignment.Tests - xUnit and Moq-based unit tests
+
+== Example Usage
+
+[source,csharp]
+----
+GET {{MoveRobotAssignment_HostAddress}}/api/RobotMovesApi/report/
+Accept: application/json
+
+POST {{MoveRobotAssignment_HostAddress}}/api/RobotMovesApi/move/
+Accept: application/json
+
+POST {{MoveRobotAssignment_HostAddress}}/api/RobotMovesApi/right/
+Accept: application/json
+
+POST {{MoveRobotAssignment_HostAddress}}/api/RobotMovesApi/left/
+Accept: application/json
+
+POST {{MoveRobotAssignment_HostAddress}}/api/RobotMovesApi/move/
+Accept: application/json
+----
+
+== Running Tests
+
+Run all tests using Visual Studio's Test Explorer or with the .NET CLI:
+
+[source,sh]
+----
+dotnet test
+----
+

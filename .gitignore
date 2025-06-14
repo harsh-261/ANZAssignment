@@ -1,0 +1,76 @@
+## Build results
+bin/
+obj/
+*.dll
+*.exe
+*.app
+*.log
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider
+.idea/
+
+## OS-specific
+.DS_Store
+Thumbs.db
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+## dotnet tools
+.tools/
+*.deps.json
+*.runtimeconfig.json
+
+## Publish
+publish/
+*.publish.xml
+
+## Test results
+TestResults/
+*.coverage
+*.coveragexml
+
+## Logs
+*.log
+logs/
+
+## Cache
+.cache/
+*.db
+*.mdb
+*.pdb
+
+## Others
+*.tmp
+*.bak
+*.swp
+*.orig
+
+## Node (if frontend project included)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Secrets & config
+appsettings.*.json
+secrets.json
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# JetBrains
+.idea/
+*.sln.iml
