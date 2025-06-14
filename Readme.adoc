@@ -27,7 +27,7 @@ MoveRobotAssignment is a C# solution for simulating a robot moving on a tabletop
 +
 [source,sh]
 ----
-git clone https://github.com/yourusername/MoveRobotAssignment.git
+git clone https://github.com/harsh-261/ANZAssignment.git
 ----
 . Open the solution in Visual Studio.
 . Build the solution.
