@@ -12,7 +12,12 @@ Accept: application/json
 POST {{MoveRobotAssignment_HostAddress}}/api/RobotMovesApi/left/
 Accept: application/json
 
-POST {{MoveRobotAssignment_HostAddress}}/api/RobotMovesApi/move/
-Accept: application/json
+POST {{MoveRobotAssignment_HostAddress}}/api/RobotMovesApi/moveToPosition
+Content-Type: application/json
 
+{
+  "x": 1,
+  "y": 2,
+  "direction": "NORTH"
+}
 ###
