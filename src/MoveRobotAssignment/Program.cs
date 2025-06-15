@@ -1,6 +1,10 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
+using MoveRobotAssignment.Middleware;
 using MoveRobotAssignment.StateMachine;
 using MoveRobotAssignment.StateMachine.Interface;
+using MoveRobotAssignment.Validator;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +32,9 @@ builder.Services.AddSingleton(Log.Logger);
 
 builder.Services.AddSingleton<IBoard, Board>();
 builder.Services.AddMediatR(typeof(Program).Assembly);
+builder.Services.AddValidatorsFromAssemblyContaining<InputPositionValidator>();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddFluentValidationClientsideAdapters();
 
 
 var app = builder.Build();
@@ -44,6 +51,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 

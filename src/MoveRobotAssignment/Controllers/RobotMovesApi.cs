@@ -6,6 +6,7 @@ using MoveRobotAssignment.Feature.MoveCommand;
 using MoveRobotAssignment.Feature.MoveToPositionCommand;
 using MoveRobotAssignment.Feature.ReportQuery;
 using MoveRobotAssignment.Feature.RightCommand;
+using MoveRobotAssignment.Models;
 
 namespace MoveRobotAssignment.Controllers;
 
@@ -49,14 +50,20 @@ public class RobotMovesApi : ControllerBase
     }
 
     [HttpPost("moveToPosition")]
-    public async Task<IActionResult> MoveToPosition(int x, int y, string direction)
+    public async Task<IActionResult> MoveToPosition([FromBody] InputPosition position)
     {
-        direction = direction.ToUpperInvariant();
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var direction = position.Direction?.ToUpperInvariant();
         if (!Enum.TryParse<Direction>(direction, out var parsedDirection))
         {
-            return BadRequest($"Invalid direction: {direction}");
+            return BadRequest($"Invalid direction: {position.Direction}");
         }
-        var result = await _mediator.Send(new MoveToPositionCommand(x, y, parsedDirection));
+        var result = await _mediator.Send(new MoveToPositionCommand(position.X, position.Y, parsedDirection));
         return Ok(result);
     }
+
 }
