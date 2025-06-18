@@ -7,6 +7,7 @@ using MoveRobotAssignment.Feature.MoveCommand;
 using MoveRobotAssignment.Feature.MoveToPositionCommand;
 using MoveRobotAssignment.Feature.ReportQuery;
 using MoveRobotAssignment.Feature.RightCommand;
+using MoveRobotAssignment.Models;
 
 namespace MoveRobotAssignmentTests.ControllerTests;
 
@@ -70,7 +71,13 @@ public class RobotMovesApiTests
     [Fact]
     public async Task MoveToPosition_InvalidDirection_ReturnsBadRequest()
     {
-        var result = await _controller.MoveToPosition(1, 2, "INVALID");
+        var inputPosition = new InputPosition
+        {
+            X = 1,
+            Y = 2,
+            Direction = "INVALID"
+        };
+        var result = await _controller.MoveToPosition(inputPosition);
 
         var badRequest = Assert.IsType<BadRequestObjectResult>(result);
         Assert.Contains("Invalid direction", badRequest.Value.ToString());
@@ -82,7 +89,14 @@ public class RobotMovesApiTests
         _mediatorMock.Setup(m => m.Send(It.IsAny<MoveToPositionCommand>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
-        var result = await _controller.MoveToPosition(1, 2, "NORTH");
+        var inputPosition = new InputPosition
+        {
+            X = 1,
+            Y = 2,
+            Direction = "NORTH"
+        };
+
+        var result = await _controller.MoveToPosition(inputPosition);
 
         var okResult = Assert.IsType<OkObjectResult>(result);
         Assert.Equal(true, okResult.Value);
@@ -94,7 +108,14 @@ public class RobotMovesApiTests
         _mediatorMock.Setup(m => m.Send(It.IsAny<MoveToPositionCommand>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(false);
 
-        var result = await _controller.MoveToPosition(6, 2, "EAST");
+        var inputPosition = new InputPosition
+        {
+            X = 6,
+            Y = 2,
+            Direction = "EAST"
+        };
+
+        var result = await _controller.MoveToPosition(inputPosition);
 
         var okResult = Assert.IsType<OkObjectResult>(result);
         Assert.Equal(false, okResult.Value);

@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MoveRobotAssignment\MoveRobotAssignment.csproj" />
+    <ProjectReference Include="..\..\src\MoveRobotAssignment\MoveRobotAssignment.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,6 +9,7 @@ public class RobotInitializer
     private readonly IMediator _mediator;
     private static bool _initialized = false;
     private static readonly object _lock = new();
+    
 
     public RobotInitializer(IMediator mediator)
     {
